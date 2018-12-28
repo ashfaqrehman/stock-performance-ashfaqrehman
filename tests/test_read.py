@@ -60,7 +60,7 @@ def test_save_portfolio(portfolio_csv):
     data = [{'symbol': 'MSFT', 'units': 10, 'cost': 99.66}]
     portfolio.save_portfolio(data, filename=portfolio_csv)
 
-    expected = ['symbol,units,cost\r\nMSFT,10,99.66\r\n']
+    expected = ['symbol,units,cost\r\n', 'MSFT,10,99.66\r\n']
     with open(portfolio_csv, 'r', newline='') as file:
         assert file.readlines() == expected, (
             f'Expecting the file to contain like: \n{expected[0]}'
