@@ -1,9 +1,12 @@
 """
-Manages your stock portfolio.
+Generates performance reports for your stock portfolio.
 """
 
 
 def main():
+    """
+    Entrypoint into program.
+    """
     pass
 
 

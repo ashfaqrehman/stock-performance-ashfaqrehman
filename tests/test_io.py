@@ -2,29 +2,12 @@
 Tests I/O disk operations.
 """
 from collections import OrderedDict
-import pytest
 
-import portfolio
+from portfolio import portfolio_report
 
 
-@pytest.fixture
-def portfolio_csv(tmp_path):
-    """
-    Creates a portfolio.csv in a temporary folder for the
-    purposes of testing.
-    """
-    lines = [
-        ('symbol,units,cost\r\n'),
-        ('APPL,100,154.23\r\n'),
-        ('AMZN,600,1223.43\r\n'),
-    ]
-
-    filename = tmp_path / 'portfolio.csv'
-    with open(filename, 'w', newline='') as file:
-        file.writelines(lines)
-
-    return filename
-
+# Note: the portfolio_csv argument found in the tests below
+#       is a pytest "fixture". It is defined in conftest.py
 
 def test_read_portfolio(portfolio_csv):
     """
@@ -44,9 +27,9 @@ def test_read_portfolio(portfolio_csv):
         ])
     ]
 
-    assert portfolio.read_portfolio(portfolio_csv) == expected, (
+    assert portfolio_report.read_portfolio(portfolio_csv) == expected, (
         'Expecting to get the data stored in the portfolio_csv '
-        'fixture as a Python data object.'
+        'fixture as a Python data structure.'
     )
 
 
@@ -58,10 +41,11 @@ def test_save_portfolio(portfolio_csv):
     The portfolio
     """
     data = [{'symbol': 'MSFT', 'units': 10, 'cost': 99.66}]
-    portfolio.save_portfolio(data, filename=portfolio_csv)
+    portfolio_report.save_portfolio(data, filename=portfolio_csv)
 
     expected = ['symbol,units,cost\r\n', 'MSFT,10,99.66\r\n']
     with open(portfolio_csv, 'r', newline='') as file:
-        assert file.readlines() == expected, (
-            f'Expecting the file to contain like: \n{expected[0]}'
+        result = file.read()
+        assert result == expected, (
+            f'Expecting the file to contain: \n{result}'
         )
