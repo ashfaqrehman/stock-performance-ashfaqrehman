@@ -22,10 +22,14 @@ The program will read a CSV file containing our portfolio data. Based on this
 data, a new CSV report will be generated using live market value to indicate
 our current holding performance using the IEX API.
 
+The program will be installable using `pip`, and requires a `setup.py`
+file. When installed, a binary should be added to the Python path which can be
+invoked from anywhere on the filesystem.
+
 An example interaction with the script looks like this:
 
 ```
-$ python portfolio_report --source portfolio.csv --target report1.csv
+$ portfolio_report --source portfolio.csv --target report1.csv
 ```
 
 #### Input file
@@ -35,6 +39,8 @@ The input CSV will have 3 columns (example provided).
 - `units`: the quantity of shares held
 - `cost`: the original / average purchase price of the holding
 
+
+Example:
 
 symbol | units | cost
 -------| ------|------
@@ -86,16 +92,15 @@ AMZN    |  Amazon Inc.   | 20    | 2001.1   |   1478.19      | 40022       |   2
 ## Getting started
 
 Take a modular approach to completing this assignment and build each functional
-component in isolation, using TDD.
+component in isolation, accompanied by appropriate tests.
 
 Here is a breakdown of isolated functional units:
 
 - Given a filename/path, read a CSV and convert it to a Python data structure
 - Fetch the symbol list from the IEX API and into a Python data structure
-- Validate
-- Validates the symbol belonging in a set of symbols
+- Validate that the symbols listed in the input CSV are listed on IEX.
 - Build a method which returns the latest market price for holdings
-- Build methods which calculate the book value, market_value
+- Build methods which calculate the book value, market value
 - Build a method to convert the holding into CSV
 - Build a method that writes to the output filename.
 
@@ -119,7 +124,12 @@ As for writing files, use the `tmp_path` fixture that ships with pytest to
 write to temporary locations on the disk.
 
 
-## Bonus
+## Evaluation rubric
 
-Report on the global performance of the portfolio below the table of holdings
-on the total book value, market value, gain & loss and change.
+| Metric | 4 | 3 | 2 | 1 | 0
+| - | - | - | - | - | -
+| Meets requirements | All requirements are met | Almost all requirements are met |  Most requirements met, some bugs | Incorrect results, several bugs | Program does not work
+| Testing | Unit tests are present and cover all functionality | Most of the script is covered by testing | Partial test coverage, some false assertions present | Minimal testing, false assertions present, missing main functional coverage. | No meaningful tests exist
+| Packaging & delivery | The project is properly packaged, documented and can be installed using pip. | The project is packaged, but is missing certain metadata |  The project is installable, but with some issues. Documentation is incomplete.| Documentation is partial, the package does not install | No packaging present, little or no documentation
+| Reusability | The code could be reused as a whole and each routine could be reused | Most of the code could be reused in other programs | Some parts of the code could be reused in other programs | A few parts of the code could be reused in other programs | The code is not organized for reusability
+| Readability | The code is well organized and very easy to understand | The code is pretty well organized and fairly easy to read | The code has some organization, is a challenge to read | The code is readable only by someone who knows what it is supposed to do | The code is poorly organized and very difficult to read
