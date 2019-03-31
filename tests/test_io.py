@@ -16,7 +16,7 @@ def test_read_portfolio(portfolio_csv):
     """
     expected = [
         OrderedDict([
-            ('symbol', 'APPL'),
+            ('symbol', 'AAPL'),
             ('units', '100'),
             ('cost', '154.23'),
         ]),
