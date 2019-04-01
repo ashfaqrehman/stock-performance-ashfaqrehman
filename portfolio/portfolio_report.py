@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import csv
+import requests
 """
 Generates performance reports for your stock portfolio.
 """
@@ -18,6 +19,28 @@ def read_portfolio(filename='portfolio.csv'):
             data.append(row)
     return data
 
+def get_symbol_list_IEX_API(url):
+    """
+    Returns symbol list from the IEX API.
+    """
+
+
+    response = requests.get(url)
+    data = response.json()
+
+    #return data.values()
+    #return data.keys()
+    #return list(data.items())
+    #return data['AAPL']['quote']['symbol']
+    #return list(data.keys())
+
+    return [
+        #(data[key]['quote']['symbol'], data[key]['quote']['companyName'], data[key]['quote']['latestPrice'])
+        (data[key]['quote']['symbol'])
+        for key in data.keys()
+    ]
+
+
 
 def save_portfolio(data, filename='portfolio.csv'):
     """Saves portfolio data from a CSV file."""
@@ -30,6 +53,7 @@ def main():
     """
     source = 'portfolio.csv'
     target = 'report1.csv'
+    url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb&types=quote'
 
     data = read_portfolio(source)
 
@@ -37,6 +61,10 @@ def main():
         writer = csv.DictWriter(file, ['symbol', 'units','cost'])
         writer.writeheader()  # Write the header
         writer.writerows(data)  # Write all the rows at once
+
+    symbol_list = get_symbol_list_IEX_API(url)
+    print(symbol_list)
+
 
 
 
