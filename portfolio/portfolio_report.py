@@ -35,7 +35,6 @@ def get_symbol_list_IEX_API(url):
     #return list(data.keys())
 
     return [
-        #(data[key]['quote']['symbol'], data[key]['quote']['companyName'], data[key]['quote']['latestPrice'])
         (data[key]['quote']['symbol'])
         for key in data.keys()
     ]
@@ -58,7 +57,7 @@ def main():
     data = read_portfolio(source)
 
     with open(target, 'w', newline='') as file:
-        writer = csv.DictWriter(file, ['symbol', 'units','cost'])
+        writer = csv.DictWriter(file, ['symbol', 'units', 'cost'])
         writer.writeheader()  # Write the header
         writer.writerows(data)  # Write all the rows at once
 
