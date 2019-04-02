@@ -41,9 +41,14 @@ def get_symbol_list_IEX_API(url):
 
 
 
-def save_portfolio(data, filename='portfolio.csv'):
+def save_portfolio(data, filename='report.csv'):
     """Saves portfolio data from a CSV file."""
     # TODO: Save the provided data to the provided filename.
+    with open(filename, 'w', newline='') as file:
+        writer = csv.DictWriter(file, ['symbol', 'units', 'cost'])
+        writer.writeheader()  # Write the header
+        writer.writerows(data)  # Write all the rows at once
+    return filename
 
 
 def main():
@@ -52,18 +57,25 @@ def main():
     """
     source = 'portfolio.csv'
     target = 'report1.csv'
-    url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb&types=quote'
+    url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,AMZ&types=quote'
 
     data = read_portfolio(source)
+    print(type(data))
+    print(data)
 
-    with open(target, 'w', newline='') as file:
-        writer = csv.DictWriter(file, ['symbol', 'units', 'cost'])
-        writer.writeheader()  # Write the header
-        writer.writerows(data)  # Write all the rows at once
+
+    save_portfolio(data,target)
+
+    for item in range(0,len(data)):
+        print(data[item]['symbol'])
+
+
 
     symbol_list = get_symbol_list_IEX_API(url)
     print(symbol_list)
 
+    for item in range(0,len(data)):
+        print(data[item]['symbol'] in symbol_list)
 
 
 
