@@ -73,7 +73,7 @@ def main():
 
     #for item in range(0, len(data)):
     for i, item in enumerate(data):
-        print(data[i]['symbol'],data[i]['symbol'] in symbol_list)
+        print(data[i]['symbol'], data[i]['symbol'] in symbol_list)
 
 
 
