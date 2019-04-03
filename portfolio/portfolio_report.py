@@ -64,9 +64,9 @@ def main():
     print(data)
 
 
-    save_portfolio(data,target)
+    save_portfolio(data, target)
 
-    for item in range(0,len(data)):
+    for item in range(0, len(data)):
         print(data[item]['symbol'])
 
 
@@ -74,7 +74,7 @@ def main():
     symbol_list = get_symbol_list_IEX_API(url)
     print(symbol_list)
 
-    for item in range(0,len(data)):
+    for item in range(0, len(data)):
         print(data[item]['symbol'] in symbol_list)
 
 
