@@ -55,25 +55,29 @@ def main():
     """
     source = 'portfolio.csv'
     target = 'report1.csv'
-    url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,AMZ&types=quote'
+    url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,FB&types=quote'
 
     data = read_portfolio(source)
-    print(type(data))
-    print(data)
+    #print(type(data))
+    #print(data)
 
 
     save_portfolio(data, target)
 
-    for item in range(0, len(data)):
-        print(data[item]['symbol'])
+
 
 
 
     symbol_list = get_portfolio_iex_api(url)
     print(symbol_list)
 
-    for item in range(0, len(data)):
-        print(data[item]['symbol'] in symbol_list)
+    #for item in range(0, len(data)):
+    for i, item in enumerate(data):
+        print(data[i]['symbol'],data[i]['symbol'] in symbol_list)
+
+
+
+
 
 
 
