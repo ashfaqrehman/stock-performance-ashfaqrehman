@@ -1,5 +1,5 @@
 import requests
-from portfolio.portfolio_report import get_symbol_list_IEX_API
+from portfolio.portfolio_report import get_portfolio_iex_api
 
 def test_get_iex_api(requests_mock):
     url = (
