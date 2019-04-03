@@ -10,7 +10,7 @@ Generates performance reports for your stock portfolio.
 
 def read_portfolio(filename='portfolio.csv'):
     """Returns portfolio data from a CSV file."""
-    # TODO: Read the CSV file with the filename above,
+    # Read the CSV file with the filename above,
     #       and return the data.
     data = list()
     with open('portfolio.csv', newline='') as file:
@@ -19,7 +19,7 @@ def read_portfolio(filename='portfolio.csv'):
             data.append(row)
     return data
 
-def get_symbol_list_IEX_API(url):
+def get_portfolio_iex_api(url):
     """
     Returns symbol list from the IEX API.
     """
@@ -43,7 +43,7 @@ def get_symbol_list_IEX_API(url):
 
 def save_portfolio(data, filename='report.csv'):
     """Saves portfolio data from a CSV file."""
-    # TODO: Save the provided data to the provided filename.
+    # Save the provided data to the provided filename.
     with open(filename, 'w', newline='') as file:
         writer = csv.DictWriter(file, ['symbol', 'units', 'cost'])
         writer.writeheader()  # Write the header

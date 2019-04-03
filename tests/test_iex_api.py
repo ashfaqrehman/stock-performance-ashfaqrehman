@@ -1,7 +1,7 @@
 import requests
 from portfolio.portfolio_report import get_symbol_list_IEX_API
 
-def test_get_IEX_API(requests_mock):
+def test_get_iex_api(requests_mock):
     url = (
         'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb&types=quote'
     )
@@ -15,4 +15,4 @@ def test_get_IEX_API(requests_mock):
         )
     expected = [('AAPL'), ('FB')]
 
-    assert get_symbol_list_IEX_API(url) == expected
+    assert get_portfolio_iex_api(url) == expected
