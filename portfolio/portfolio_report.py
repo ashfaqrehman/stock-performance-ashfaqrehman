@@ -5,19 +5,13 @@ Generates performance reports for your stock portfolio.
 
 import csv
 import requests
-"""
-Generates performance reports for your stock portfolio.
-"""
-
-
-
 
 def read_portfolio(filename='portfolio.csv'):
     """Returns portfolio data from a CSV file."""
     # Read the CSV file with the filename above,
     #       and return the data.
     data = list()
-    with open('portfolio.csv', newline='') as file:
+    with open(filename, newline='') as file:
         csv_reader = csv.DictReader(file)
         for row in csv_reader:
             data.append(row)
@@ -75,7 +69,7 @@ def main():
 
 
 
-    symbol_list = get_symbol_list_IEX_API(url)
+    symbol_list = get_portfolio_iex_api(url)
     print(symbol_list)
 
     for item in range(0, len(data)):

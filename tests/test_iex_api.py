@@ -5,6 +5,9 @@ Tests IEX API.
 from portfolio.portfolio_report import get_portfolio_iex_api
 
 def test_get_iex_api(requests_mock):
+    """
+    Tests IEX API.
+    """
     url = (
         'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,fb&types=quote'
     )

@@ -12,7 +12,7 @@ def portfolio_csv(tmp_path):
     """
     lines = [
         ('symbol,units,cost\r\n'),
-        ('APPL,100,154.23\r\n'),
+        ('AAPL,100,154.23\r\n'),
         ('AMZN,600,1223.43\r\n'),
     ]
 
