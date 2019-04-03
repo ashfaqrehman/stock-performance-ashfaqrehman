@@ -13,6 +13,6 @@ def test_get_IEX_API(requests_mock):
             "FB":{"quote":{"symbol":"FB", "companyName":"Facebook Inc.", "latestPrice":166.62}}
             }
         )
-    expected = [('AAPL'),('FB')]
+    expected = [('AAPL'), ('FB')]
 
     assert get_symbol_list_IEX_API(url) == expected
