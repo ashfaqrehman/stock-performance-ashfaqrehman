@@ -1,4 +1,7 @@
-import requests
+"""
+Tests IEX API.
+"""
+
 from portfolio.portfolio_report import get_portfolio_iex_api
 
 def test_get_iex_api(requests_mock):

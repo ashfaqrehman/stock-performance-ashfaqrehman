@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+"""
+Generates performance reports for your stock portfolio.
+"""
+
 import csv
 import requests
 """
