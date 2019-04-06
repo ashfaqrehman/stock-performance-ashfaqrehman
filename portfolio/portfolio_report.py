@@ -6,6 +6,7 @@ Generates performance reports for your stock portfolio.
 import csv
 from collections import OrderedDict
 import time
+import argparse
 import requests
 
 
@@ -91,8 +92,10 @@ def build_portfolio(data_csv, data_api):
     data_portfolio = []
 
     for key_csv in data_csv:
+        not_found = True
         for key_api in data_api:
             if key_csv['symbol'] == key_api['symbol']:
+                not_found = False
                 data_portfolio.append(
                     OrderedDict([
                         ('symbol', key_csv['symbol']),
@@ -107,6 +110,8 @@ def build_portfolio(data_csv, data_api):
                     ])
                 )
             continue
+        if not_found:
+            print ('Warning:', key_csv['symbol'], 'unrecognized input/symbol.')
     return data_portfolio
 
 def main():
@@ -114,9 +119,14 @@ def main():
     Entrypoint into program.
     """
     start = time.time()
-    source = 'portfolio.csv'
-    target = 'report1.csv'
-    #url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=aapl,FB&types=quote'
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--source', required=True)
+    parser.add_argument('-t', '--target', required=True)
+    args = parser.parse_args()
+    source = args.source
+    target = args.target
+
 
     data_csv = read_portfolio(source)
     url = build_iex_api_url(data_csv)
@@ -124,36 +134,7 @@ def main():
     data_portfolio = build_portfolio(data_csv, data_api)
     save_portfolio(data_portfolio, target)
     end = time.time()
-    print('Runtime', end - start)
-
-
-    #symbol_list = get_portfolio_iex_api(url)
-    #print(data_csv)
-
-    #print(data_api[1]['symbol'])
-    #print(data_csv[1]['symbol'])
-
-
-
-    #print(data_portfolio)
-
-
-    #print(type(data))
-    #print(data)
-
-
-
-
-
-
-    #for item in range(0, len(data)):
-    #for item in enumerate(data):
-    #    print(item[1]['symbol'])
-        #print(data[i]['symbol'], data[i]['symbol'] in symbol_list)
-
-
-
-
+    print('Runtime:', round(end - start, 2), 'seconds')
 
 
 
