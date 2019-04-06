@@ -39,11 +39,11 @@ def test_save_portfolio(portfolio_csv):
 
     The portfolio
     """
-    data = [{'symbol': 'MSFT', 'units': 10, 'cost': 99.66}]
+    data = [{'symbol': 'MSFT', 'company_name': 'Microsoft Corporation', 'units': 10, 'cost': 99.66, 'latest_price': 119.89, 'book_value': 996.6, 'market_value': 1198.9, 'gain_loss': 202.3, 'change': 0.203}]
     portfolio_report.save_portfolio(data, filename=portfolio_csv)
 
 
-    expected = 'symbol,units,cost\r\nMSFT,10,99.66\r\n'
+    expected = 'symbol,company_name,units,cost,latest_price,book_value,market_value,gain_loss,change\r\nMSFT,Microsoft Corporation,10,99.66,119.89,996.6,1198.9,202.3,0.203\r\n'
     with open(portfolio_csv, 'r', newline='') as file:
         result = file.read()
         assert result == expected, (
