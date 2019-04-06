@@ -4,9 +4,9 @@ Generates performance reports for your stock portfolio.
 """
 
 import csv
-import requests
 from collections import OrderedDict
 import time
+import requests
 
 
 def read_portfolio(filename='portfolio.csv'):
@@ -64,11 +64,11 @@ def build_iex_api_url(csv_data):
     url = 'https://api.iextrading.com/1.0/stock/market/batch?symbols=' + symbols + '&types=quote'
     return url
 
-def get_holdings_api(url):
+def get_latest_market_price(url):
     """
     Accepts url for IEX API
 
-    Returns dictionary of holdings
+    Returns the latest market price for holdings
     """
     response = requests.get(url)
     data = response.json()
@@ -103,9 +103,9 @@ def build_portfolio(data_csv, data_api):
                         ('book_value', round(float(key_csv['units']) * float(key_csv['cost']), 2)),
                         ('market_value', round(float(key_csv['units']) * float(key_api['latestPrice']), 2)),
                         ('gain_loss', round((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost'])), 2)),
-                        ('change', round(((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost']))) / (float(key_csv['units']) * float(key_csv['cost'])),3))
-                ])
-            )
+                        ('change', round(((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost']))) / (float(key_csv['units']) * float(key_csv['cost'])), 3))
+                    ])
+                )
             continue
     return data_portfolio
 
@@ -120,19 +120,24 @@ def main():
 
     data_csv = read_portfolio(source)
     url = build_iex_api_url(data_csv)
-    data_api = get_holdings_api(url)
-    symbol_list = get_portfolio_iex_api(url)
+    data_api = get_latest_market_price(url)
+    data_portfolio = build_portfolio(data_csv, data_api)
+    save_portfolio(data_portfolio, target)
+    end = time.time()
+    print('Runtime', end - start)
+
+
+    #symbol_list = get_portfolio_iex_api(url)
     #print(data_csv)
 
     #print(data_api[1]['symbol'])
     #print(data_csv[1]['symbol'])
 
 
-    data_portfolio = build_portfolio(data_csv, data_api)
-    print(data_portfolio)
-    save_portfolio(data_portfolio, target)
-    end = time.time()
-    print(end - start)
+
+    #print(data_portfolio)
+
+
     #print(type(data))
     #print(data)
 

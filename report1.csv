@@ -2,3 +2,5 @@ symbol,company_name,units,cost,latest_price,book_value,market_value,gain_loss,ch
 AAPL,Apple Inc.,100,154.23,197,15423.0,19700.0,4277.0,0.277
 AMZN,Amazon.com Inc.,600,2000,1837.28,1200000.0,1102368.0,-97632.0,-0.081
 MSFT,Microsoft Corporation,10,99.66,119.89,996.6,1198.9,202.3,0.203
+SQ,Square Inc. Class A,10,75.6,75.03,756.0,750.3,-5.7,-0.008
+SJR,Shaw Communications Inc.,10,20,20.85,200.0,208.5,8.5,0.043
