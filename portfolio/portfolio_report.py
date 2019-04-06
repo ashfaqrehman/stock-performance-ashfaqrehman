@@ -47,8 +47,7 @@ def save_portfolio(data, filename='report.csv'):
     """Saves portfolio data from a CSV file."""
     # Save the provided data to the provided filename.
     with open(filename, 'w', newline='') as file:
-        writer = csv.DictWriter(file, ['symbol', 'company_name', 'units', 'cost',
-         'latest_price', 'book_value', 'market_value', 'gain_loss', 'change'])
+        writer = csv.DictWriter(file, ['symbol', 'company_name', 'units', 'cost', 'latest_price', 'book_value', 'market_value', 'gain_loss', 'change'])
         writer.writeheader()  # Write the header
         writer.writerows(data)  # Write all the rows at once
     return filename
