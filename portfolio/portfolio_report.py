@@ -21,29 +21,6 @@ def read_portfolio(filename='portfolio.csv'):
             data.append(row)
     return data
 
-def get_portfolio_iex_api(url):
-    """
-    Returns symbol list from the IEX API.
-    """
-
-
-    response = requests.get(url)
-    data = response.json()
-
-    #return data.values()
-    #return data.keys()
-    #return list(data.items())
-    #return data['AAPL']['quote']['symbol']
-    #return list(data.keys())
-
-    return [
-        (data[key]['quote']['symbol'])
-        for key in data.keys()
-    ]
-
-
-
-
 def save_portfolio(data, filename='report.csv'):
     """Saves portfolio data from a CSV file."""
     # Save the provided data to the provided filename.
@@ -94,6 +71,7 @@ def build_portfolio(data_csv, data_api):
     for key_csv in data_csv:
         not_found = True
         for key_api in data_api:
+            #print(key_csv['symbol'], '==', key_api['symbol'])
             if key_csv['symbol'] == key_api['symbol']:
                 not_found = False
                 data_portfolio.append(
@@ -109,9 +87,10 @@ def build_portfolio(data_csv, data_api):
                         ('change', round(((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost']))) / (float(key_csv['units']) * float(key_csv['cost'])), 3))
                     ])
                 )
-            continue
+                #print("found it, skipping...")
+                break #found it, skip searching the rest..."
         if not_found:
-            print ('Warning:', key_csv['symbol'], 'unrecognized input/symbol.')
+            print('Warning:', key_csv['symbol'], 'unrecognized input/symbol.')
     return data_portfolio
 
 def main():
