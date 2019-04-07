@@ -6,6 +6,7 @@ from collections import OrderedDict
 from portfolio import portfolio_report
 
 
+
 # Note: the portfolio_csv argument found in the tests below
 #       is a pytest "fixture". It is defined in conftest.py
 
@@ -31,6 +32,42 @@ def test_read_portfolio(portfolio_csv):
         'Expecting to get the data stored in the portfolio_csv '
         'fixture as a Python data structure.'
     )
+
+def test_build_portfolio():
+    data_csv = [
+        OrderedDict([('symbol', 'AAPL'), ('units', '100'), ('cost', '154.23')]),
+        OrderedDict([('symbol', 'AMZN'), ('units', '600'), ('cost', '2000')])
+    ]
+    data_api = [
+        OrderedDict([('symbol', 'AAPL'), ('companyName', 'Apple Inc.'), ('latestPrice', 197)]),
+        OrderedDict([('symbol', 'AMZN'), ('companyName', 'Amazon.com Inc.'), ('latestPrice', 1837.28)])
+    ]
+
+    expected = [
+        OrderedDict([
+            ('symbol', 'AAPL'),
+            ('company_name', 'Apple Inc.'),
+            ('units', '100'),
+            ('cost', '154.23'),
+            ('latest_price', 197),
+            ('book_value', 15423.0),
+            ('market_value', 19700.0),
+            ('gain_loss', 4277.0),
+            ('change', 0.277)
+        ]),
+        OrderedDict([
+            ('symbol', 'AMZN'),
+            ('company_name', 'Amazon.com Inc.'),
+            ('units', '600'), ('cost', '2000'),
+            ('latest_price', 1837.28),
+            ('book_value', 1200000.0),
+            ('market_value', 1102368.0),
+            ('gain_loss', -97632.0),
+            ('change', -0.081)
+        ])
+    ]
+
+    assert portfolio_report.build_portfolio(data_csv, data_api) == expected
 
 def test_save_portfolio(portfolio_csv):
     """
