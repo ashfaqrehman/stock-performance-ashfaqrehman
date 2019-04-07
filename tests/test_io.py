@@ -34,6 +34,10 @@ def test_read_portfolio(portfolio_csv):
     )
 
 def test_build_portfolio():
+    """
+    Given that the build_portfolio is called, assert that
+    the data the expected data is returned.
+    """
     data_csv = [
         OrderedDict([('symbol', 'AAPL'), ('units', '100'), ('cost', '154.23')]),
         OrderedDict([('symbol', 'AMZN'), ('units', '600'), ('cost', '2000')])

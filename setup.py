@@ -1,4 +1,7 @@
 import setuptools
+"""
+setup.py for package build
+"""
 
 setuptools.setup(
     name='portfolio_report',
