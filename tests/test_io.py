@@ -39,12 +39,28 @@ def test_build_portfolio():
     the data the expected data is returned.
     """
     data_csv = [
-        OrderedDict([('symbol', 'AAPL'), ('units', '100'), ('cost', '154.23')]),
-        OrderedDict([('symbol', 'AMZN'), ('units', '600'), ('cost', '2000')])
+        OrderedDict([
+            ('symbol', 'AAPL'),
+            ('units', '100'),
+            ('cost', '154.23')
+        ]),
+        OrderedDict([
+            ('symbol', 'AMZN'),
+            ('units', '600'),
+            ('cost', '2000')
+        ])
     ]
     data_api = [
-        OrderedDict([('symbol', 'AAPL'), ('companyName', 'Apple Inc.'), ('latestPrice', 197)]),
-        OrderedDict([('symbol', 'AMZN'), ('companyName', 'Amazon.com Inc.'), ('latestPrice', 1837.28)])
+        OrderedDict([
+            ('symbol', 'AAPL'),
+            ('companyName', 'Apple Inc.'),
+            ('latestPrice', 197)
+        ]),
+        OrderedDict([
+            ('symbol', 'AMZN'),
+            ('companyName', 'Amazon.com Inc.'),
+            ('latestPrice', 1837.28)
+        ])
     ]
 
     expected = [
