@@ -17,8 +17,8 @@ def test_get_iex_api(requests_mock):
         json={
             "AAPL":
             {"quote":{"symbol":"AAPL", "companyName":"Apple Inc.", "latestPrice":197}},
-            "AMZN":
-            {"quote":{"symbol":"AMZN", "companyName":"Amazon.com Inc.", "latestPrice":1837.28}}
+            "SQ":
+            {"quote":{"symbol":"SQ", "companyName":"Square Inc.", "latestPrice":75}}
             }
         )
     expected = [
@@ -28,9 +28,9 @@ def test_get_iex_api(requests_mock):
             ('latestPrice', 197)
         ]),
         OrderedDict([
-            ('symbol', 'AMZN'),
-            ('companyName', 'Amazon.com Inc.'),
-            ('latestPrice', 1837.28)
+            ('symbol', 'SQ'),
+            ('companyName', 'Square Inc.'),
+            ('latestPrice', 75)
         ])
     ]
 
