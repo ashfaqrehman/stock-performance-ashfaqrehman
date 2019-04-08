@@ -25,7 +25,17 @@ def save_portfolio(data, filename='report.csv'):
     """Saves portfolio data from a CSV file."""
     # Save the provided data to the provided filename.
     with open(filename, 'w', newline='') as file:
-        writer = csv.DictWriter(file, ['symbol', 'company_name', 'units', 'cost', 'latest_price', 'book_value', 'market_value', 'gain_loss', 'change'])
+        writer = csv.DictWriter(file, [
+            'symbol',
+            'company_name',
+            'units',
+            'cost',
+            'latest_price',
+            'book_value',
+            'market_value',
+            'gain_loss',
+            'change'
+        ])
         writer.writeheader()  # Write the header
         writer.writerows(data)  # Write all the rows at once
     return filename
@@ -81,10 +91,18 @@ def build_portfolio(data_csv, data_api):
                         ('units', key_csv['units']),
                         ('cost', key_csv['cost']),
                         ('latest_price', key_api['latestPrice']),
-                        ('book_value', round(float(key_csv['units']) * float(key_csv['cost']), 2)),
-                        ('market_value', round(float(key_csv['units']) * float(key_api['latestPrice']), 2)),
-                        ('gain_loss', round((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost'])), 2)),
-                        ('change', round(((float(key_csv['units']) * key_api['latestPrice']) - (float(key_csv['units']) * float(key_csv['cost']))) / (float(key_csv['units']) * float(key_csv['cost'])), 3))
+                        ('book_value', round(float(key_csv['units']) * \
+                            float(key_csv['cost']), 2)),
+                        ('market_value', round(float(key_csv['units']) * \
+                        float(key_api['latestPrice']), 2)),
+                        ('gain_loss', round((float(key_csv['units']) * \
+                            key_api['latestPrice']) - \
+                            (float(key_csv['units']) * \
+                                float(key_csv['cost'])), 2)),
+                        ('change',
+                        round(((float(key_csv['units']) * key_api['latestPrice']) - \
+                        (float(key_csv['units']) * float(key_csv['cost']))) / \
+                        (float(key_csv['units']) * float(key_csv['cost'])), 3))
                     ])
                 )
                 #print("found it, skipping...")

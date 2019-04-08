@@ -22,8 +22,16 @@ def test_get_iex_api(requests_mock):
             }
         )
     expected = [
-        OrderedDict([('symbol', 'AAPL'), ('companyName', 'Apple Inc.'), ('latestPrice', 197)]),
-        OrderedDict([('symbol', 'AMZN'), ('companyName', 'Amazon.com Inc.'), ('latestPrice', 1837.28)])
+        OrderedDict([
+            ('symbol', 'AAPL'),
+            ('companyName', 'Apple Inc.'),
+            ('latestPrice', 197)
+        ]),
+        OrderedDict(
+            [('symbol', 'AMZN'),
+            ('companyName', 'Amazon.com Inc.'),
+            ('latestPrice', 1837.28)
+        ])
     ]
 
     assert get_latest_market_price(url) == expected
