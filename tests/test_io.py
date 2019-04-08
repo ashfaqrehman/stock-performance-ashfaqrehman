@@ -1,9 +1,10 @@
-from collections import OrderedDict
-from portfolio import portfolio_report
-
 """
 Tests I/O disk operations.
 """
+from collections import OrderedDict
+from portfolio import portfolio_report
+
+
 # Note: the portfolio_csv argument found in the tests below
 #       is a pytest "fixture". It is defined in conftest.py
 
@@ -16,7 +17,7 @@ def test_read_portfolio(portfolio_csv):
         OrderedDict([
             ('symbol', 'AAPL'),
             ('units', '100'),
-            ('cost', '154.23'),
+            ('cost', '154.23')
         ]),
         OrderedDict([
             ('symbol', 'AMZN'),
