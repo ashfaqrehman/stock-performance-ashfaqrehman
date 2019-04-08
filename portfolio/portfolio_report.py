@@ -99,8 +99,7 @@ def build_portfolio(data_csv, data_api):
                             key_api['latestPrice']) - \
                             (float(key_csv['units']) * \
                                 float(key_csv['cost'])), 2)),
-                        ('change',
-                        round(((float(key_csv['units']) * key_api['latestPrice']) - \
+                        ('change', round(((float(key_csv['units']) * key_api['latestPrice']) - \
                         (float(key_csv['units']) * float(key_csv['cost']))) / \
                         (float(key_csv['units']) * float(key_csv['cost'])), 3))
                     ])

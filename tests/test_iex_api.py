@@ -27,8 +27,8 @@ def test_get_iex_api(requests_mock):
             ('companyName', 'Apple Inc.'),
             ('latestPrice', 197)
         ]),
-        OrderedDict(
-            [('symbol', 'AMZN'),
+        OrderedDict([
+            ('symbol', 'AMZN'),
             ('companyName', 'Amazon.com Inc.'),
             ('latestPrice', 1837.28)
         ])
