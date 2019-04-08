@@ -15,8 +15,10 @@ def test_get_iex_api(requests_mock):
     requests_mock.get(
         url,
         json={
-            "AAPL":{"quote":{"symbol":"AAPL", "companyName":"Apple Inc.", "latestPrice":197}},
-            "AMZN":{"quote":{"symbol":"AMZN", "companyName":"Amazon.com Inc.", "latestPrice":1837.28}}
+            "AAPL":
+            {"quote":{"symbol":"AAPL", "companyName":"Apple Inc.", "latestPrice":197}},
+            "AMZN":
+            {"quote":{"symbol":"AMZN", "companyName":"Amazon.com Inc.", "latestPrice":1837.28}}
             }
         )
     expected = [
