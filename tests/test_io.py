@@ -1,12 +1,9 @@
+from collections import OrderedDict
+from portfolio import portfolio_report
+
 """
 Tests I/O disk operations.
 """
-from collections import OrderedDict
-
-from portfolio import portfolio_report
-
-
-
 # Note: the portfolio_csv argument found in the tests below
 #       is a pytest "fixture". It is defined in conftest.py
 
