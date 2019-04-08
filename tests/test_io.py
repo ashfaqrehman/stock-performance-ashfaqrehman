@@ -38,9 +38,9 @@ def test_build_portfolio():
     """
     data_csv = [
         OrderedDict([
-            ('symbol', 'AAPL'),
-            ('units', '100'),
-            ('cost', '154.23')
+            ('symbol', 'SJR'),
+            ('units', '10'),
+            ('cost', '20')
         ]),
         OrderedDict([
             ('symbol', 'AMZN'),
@@ -50,9 +50,9 @@ def test_build_portfolio():
     ]
     data_api = [
         OrderedDict([
-            ('symbol', 'AAPL'),
-            ('companyName', 'Apple Inc.'),
-            ('latestPrice', 197)
+            ('symbol', 'SJR'),
+            ('companyName', 'Shaw Communications Inc.'),
+            ('latestPrice', 20.85)
         ]),
         OrderedDict([
             ('symbol', 'AMZN'),
@@ -63,15 +63,15 @@ def test_build_portfolio():
 
     expected = [
         OrderedDict([
-            ('symbol', 'AAPL'),
-            ('company_name', 'Apple Inc.'),
-            ('units', '100'),
-            ('cost', '154.23'),
-            ('latest_price', 197),
-            ('book_value', 15423.0),
-            ('market_value', 19700.0),
-            ('gain_loss', 4277.0),
-            ('change', 0.277)
+            ('symbol', 'SJR'),
+            ('company_name', 'Shaw Communications Inc.'),
+            ('units', '10'),
+            ('cost', '20'),
+            ('latest_price', 20.85),
+            ('book_value', 200.0),
+            ('market_value', 208.5),
+            ('gain_loss', 8.5),
+            ('change', 0.043)
         ]),
         OrderedDict([
             ('symbol', 'AMZN'),
