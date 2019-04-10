@@ -1,5 +1,8 @@
 # Assignment 5 - Stock Portfolio
 
+
+pip install git+git://github.com:sheridan-python/stock-performance-ashfaqrehman#egg=portfolio
+
 This assignment will test the following skills:
 
 - Reading and writing to the file system
@@ -133,3 +136,27 @@ write to temporary locations on the disk.
 | Packaging & delivery | The project is properly packaged, documented and can be installed using pip. | The project is packaged, but is missing certain metadata |  The project is installable, but with some issues. Documentation is incomplete.| Documentation is partial, the package does not install | No packaging present, little or no documentation
 | Reusability | The code could be reused as a whole and each routine could be reused | Most of the code could be reused in other programs | Some parts of the code could be reused in other programs | A few parts of the code could be reused in other programs | The code is not organized for reusability
 | Readability | The code is well organized and very easy to understand | The code is pretty well organized and fairly easy to read | The code has some organization, is a challenge to read | The code is readable only by someone who knows what it is supposed to do | The code is poorly organized and very difficult to read
+
+
+## Installation
+
+### Quick install
+
+```
+$ pip install git+ssh://git@github.com/sheridan-python/stock-performance-ashfaqrehman#egg=portfolio
+```
+
+### For development
+1. Clone the repo
+2. Install using pip like:
+
+```
+$ pip install -e .
+```
+
+
+## Usage
+
+```
+$ portfolio_report --source portfolio.csv --target report1.csv
+```
