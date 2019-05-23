@@ -1,4 +1,4 @@
-# Assignment 5 - Stock Portfolio
+# Assignment 5 - Stock Portfolio Performance
 
 
 pip install git+git://github.com:sheridan-python/stock-performance-ashfaqrehman#egg=portfolio
